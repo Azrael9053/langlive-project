@@ -10,3 +10,30 @@ h1{
 .Sakura{
     color:pink;
 }
+select{
+    border-radius: 30px;
+    font-size: 20px;
+    padding: 10px;
+}
+input{
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 20px;
+}
+.runbtn{
+    border-radius: 10px;
+    padding: 10px 30px 10px 30px;
+    width: 100%;
+    font-size: 20px;
+    border-style: none;
+    background-color: rgb(255, 205, 113);
+}
+table{
+    width: 90vw;
+    height: 150px;
+    margin: auto;
+}
+table td{
+    vertical-align: middle;
+    text-align: center;
+}
