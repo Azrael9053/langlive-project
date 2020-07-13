@@ -159,7 +159,7 @@ def failfiledownload():
 
 
 
-def main(name, time1):
+def main(time1, name):
     startday = time1.split('T')[0]
     starttime = time1.split('T')[1]
     timetuple = time.localtime()
@@ -174,7 +174,8 @@ def main(name, time1):
     timetuple = tuple(tlist)
     print(timetuple)
     iddic = {'吳婉淩':'4210533', '李孟純':'1985963', '李采潔':'3651219', '林潔心':'3650718', '林佳霓':'4663716', '冼迪琦':'3687493', '柏靈':'3650740', '宮田留佳':'4663724', '陳詩雅':'3652550', '國興瑀':'4560592', '董子瑄':'3800370', '賈宜蓁':'3650741', '蔡亞恩':'3650734', '潘姿怡':'2028726', '王逸嘉':'3650583', '李佳俐':'3619520', '邱品涵':'3686707', '周家安':'4663718', '林倢':'3650580', '翁彤薰':'4663722', '高云珏':'3650590', '張法法':'3652111', '蔡伊柔':'1398860', '鄭妤葳':'3793753', '劉語晴':'3686711', '劉潔明':'3686715', '藤井麻由':'3794774', '羅瑞婷':'3650751', '小山美玲':'3795137', '本田柚萱':'no', '吳騏卉':'4663715', '周佳郁':'3650735', '林易沄':'3650589', '林家瑩':'3650755', '林于馨':'3686713', '林亭莉':'4663721', '袁子筑':'4663738', '高硯晨':'no', '張羽翎':'3686709', '曾詩羽':'3686725', '鄭佳郁':'3650753', '劉曉晴':'3686708'}
-    ID = iddic[name]
+    # ID = iddic[name]
+    ID = name
     print(ID)
     while True:
         if time.mktime(timetuple) < time.mktime(time.localtime()):
@@ -182,8 +183,9 @@ def main(name, time1):
             break
         else:
             time.sleep(1)
-            os.system('cls')
+            # os.system('cls')
             print('下載成員ID :', ID)
+            print('下載成員名稱 :', name)
             print('現在時間 :', time.strftime("%b %d %Y %H:%M:%S", time.localtime()))
             print('設定下載開始時間 :', time.strftime("%b %d %Y %H:%M:%S", timetuple))
     Year = time.strftime('%Y', time.localtime())
@@ -196,7 +198,7 @@ def main(name, time1):
     while True:
         r = requests.get('https://langapi.lv-show.com/langweb/v1/room/liveinfo?room_id=' + ID).json()
         try:
-            print('這次的網址 : ' + r['data']['live_info']['liveurl_hls'])
+            print(name + '這次的網址 : ' + r['data']['live_info']['liveurl_hls'])
             m3u8_url = r['data']['live_info']['liveurl_hls']
             m3u8 = m3u8_url
             ts_url = m3u8_url.replace('playlist.m3u8', '')
@@ -243,8 +245,17 @@ def main(name, time1):
         except:
             print('請求m3u8網址超時')
 
-# @eel.expose
-# def start(arr)
+@eel.expose
+def startmain(array):
+    threads = []
+    for i, arr in enumerate(array):
+        threads.append(threading.Thread(target=main, args=(arr[0], arr[1])))
+        threads[i].start()
+
+    for i, arr in enumerate(array):
+        threads[i].join()
+
+    print('全部下載結束')
 
 
 eel.start('main.html', size = (720, 400))

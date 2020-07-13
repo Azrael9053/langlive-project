@@ -49,6 +49,6 @@ function showtext123(text) {
 }
 
 function start() {
-    alert(window.arr)
+    eel.startmain(arr);
 }
-var arr = []
+var arr = [["2020-07-13T22:24","1364077"], ["2020-07-13T22:24","1398148"]]
