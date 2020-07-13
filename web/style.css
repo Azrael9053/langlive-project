@@ -22,7 +22,21 @@ input{
 }
 .runbtn{
     border-radius: 10px;
-    padding: 10px 30px 10px 30px;
+    /* padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px; */
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+    border-style: none;
+    background-color: rgb(255, 205, 113);
+}
+.addbtn{
+    border-radius: 10px;
+    /* padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 30px; */
+    padding: 10px;
     width: 100%;
     font-size: 20px;
     border-style: none;
@@ -36,4 +50,10 @@ table{
 table td{
     vertical-align: middle;
     text-align: center;
+}
+#btn:hover{
+    background-color:#BDB76B;
+}
+#btn:active{
+    transform:translate(0px,2px)
 }

@@ -32,7 +32,23 @@ window.onload = function () {
     })
 }
 
-function gettime() {
+function getvalue() {
     var time = document.getElementById("date")
-    alert(time)
+    var name = document.getElementById("chooseMember")
+    pushvalue(time.value, name.value)
 }
+
+function pushvalue(time, name) {
+    arr.push([time, name])
+}
+
+function showtext123(text) {
+    // document.getElementById("showtext").style.display = "inline"
+    // document.getElementById("showtext").innerHTML = text
+    alert(text);
+}
+
+function start() {
+    alert(window.arr)
+}
+var arr = []
