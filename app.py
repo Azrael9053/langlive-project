@@ -57,7 +57,7 @@ def todownload(t, ts_url, file_path):
         print('下載超時')
 
 
-def tsdownload(m3u8_url, ts_url, file_path, clr):
+def tsdownload(m3u8_url, ts_url, file_path, clr, m3u8):
     tflag = 0
     ts_list = []
     first_ts = 0
@@ -117,7 +117,7 @@ def tsdownload(m3u8_url, ts_url, file_path, clr):
 
             if count % 10 == 4:
                 try:
-                    m = requests.get(m3u8_url, headers=headers)
+                    m = requests.get(m3u8, headers=headers)
                     if m.status_code == 200:
                         for x in m.text.split('\n'):
                             if '.m3u8?' in x:
@@ -140,7 +140,7 @@ def revdownload(n, tstail, ts_url, file_path):
     while True:
         n -= 1
         url = ts_url + str(n) + tstail
-        print(url)
+        # print(url)
         try:
             r = requests.get(url, headers=headers)
             if r.status_code == 200:
@@ -252,7 +252,7 @@ def main(time1, name):
                         m3u8_url = x1
                         break
             temp = 1
-            ts_taillist = tsdownload(m3u8_url, ts_url, file_path, clr)
+            ts_taillist = tsdownload(m3u8_url, ts_url, file_path, clr, m3u8)
             # print(firstts, tail)
             firstts = ts_taillist[0]
             tail = ts_taillist[1]

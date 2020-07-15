@@ -33,12 +33,9 @@ window.onload = function () {
 }
 
 function getvalue() {
-    var time = document.getElementById("date")
-    var name = document.getElementById("chooseMember")
-    pushvalue(time.value, name.value)
-}
-
-function pushvalue(time, name) {
+    var time = document.getElementById("date").value
+    var name = document.getElementById("chooseMember").value
+    document.getElementById("addMsg").innerHTML += `${name}的直播預計在${time}開始偵測<br>`
     arr.push([time, name])
 }
 
